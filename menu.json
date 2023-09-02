@@ -1,0 +1,71 @@
+{
+  "restaurant_name": "Steak for C++",
+  "location": "7th Floor, Cairo University",
+  "menu_sections": [
+    {
+      "section_name": "Appetizers",
+      "dishes": [
+        {
+          "dish_name": "Bruschetta",
+          "description": "Toasted baguette topped with diced tomatoes, fresh basil, garlic, and olive oil.",
+          "price": 8.99,
+          "rating": 4.5,
+          "image_url": "https://media.istockphoto.com/id/481765835/photo/homemade-italian-bruschetta-appetizer.jpg?s=612x612&w=0&k=20&c=20lme_vcpR4R2wfNyAFwvglvSj3mxJU9qel00LqzP3I="
+        },
+        {
+          "dish_name": "Spinach Artichoke Dip",
+          "description": "Creamy dip made with spinach, artichokes, and melted cheese. Served with tortilla chips.",
+          "price": 10.99,
+          "rating": 4.0,
+          "image_url": "https://s23209.pcdn.co/wp-content/uploads/2022/08/220602_DD_Spinach-Artichoke-Dip_140-1.jpg"
+        }
+      ]
+    },
+
+    {
+      "section_name": "Main Courses",
+      "dishes": [
+        {
+          "dish_name": "Grilled Salmon",
+          "description": "Freshly grilled salmon fillet seasoned with herbs. Served with steamed vegetables and rice.",
+          "price": 18.99,
+          "rating": 4.8,
+          "image_url": "https://www.dinneratthezoo.com/wp-content/uploads/2019/05/grilled-salmon-final-2.jpg"
+        },
+        {
+          "dish_name": "Pasta Primavera",
+          "description": "Fettuccine pasta tossed with a medley of sautéed vegetables in a light cream sauce.",
+          "price": 14.99,
+          "rating": 4.2,
+          "image_url": "https://reciperunner.com/wp-content/uploads/2016/04/pasta-primavera-4.jpg"
+        },
+        {
+          "dish_name": "Filet Mignon",
+          "description": "Tender filet mignon steak cooked to perfection. Served with mashed potatoes and asparagus.",
+          "price": 26.99,
+          "rating": 4.9,
+          "image_url": "https://hips.hearstapps.com/hmg-prod/images/delish-filet-mignon-horizontal-1541189043.jpeg?crop=0.8888888888888888xw:1xh;center,top&resize=1200:*"
+        }
+      ]
+    },
+    {
+      "section_name": "Desserts",
+      "dishes": [
+        {
+          "dish_name": "Chocolate Lava Cake",
+          "description": "Warm chocolate cake with a gooey molten center. Served with vanilla ice cream.",
+          "price": 7.99,
+          "rating": 4.6,
+          "image_url": "https://www.acouplecooks.com/wp-content/uploads/2022/02/Lava-Cake-005s.jpg"
+        },
+        {
+          "dish_name": "New York Cheesecake",
+          "description": "Classic creamy cheesecake topped with your choice of fruit compote.",
+          "price": 6.99,
+          "rating": 4.4,
+          "image_url": "https://www.lifeloveandsugar.com/wp-content/uploads/2023/02/NY-Style-Cheesecake5E.jpg"
+        }
+      ]
+    }
+  ]
+}
