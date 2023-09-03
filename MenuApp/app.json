@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "MenuApplication",
-    "slug": "Menu-Application",
+    "name": "MenuApp",
+    "slug": "MenuApp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "cover",
+      "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
@@ -25,11 +25,6 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "31c5543f-ec02-4692-bf84-005e7e3aac74"
-      }
     }
   }
 }

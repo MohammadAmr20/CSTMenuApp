@@ -20,16 +20,15 @@ export default function About() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#E19898",
+    backgroundColor: "#C18F6D20",
   },
   about: {
     width: "90%",
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 20,
-    color: "white",
+    color: "#0A0201",
   },
 });

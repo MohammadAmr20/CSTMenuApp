@@ -3,9 +3,9 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
+  Pressable,
   ImageBackground,
-  Dimensions,
+  Image,
 } from "react-native";
 
 const image = {
@@ -15,19 +15,28 @@ export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
       <ImageBackground source={image} style={styles.image}>
-        <Text style={styles.title}>Welcome to our restaurant</Text>
         <StatusBar style="auto" />
         <View style={styles.buttons}>
-          <View>
-            <Button
-              title="About"
-              onPress={() => navigation.navigate("About")}
-            ></Button>
-          </View>
-          <Button
-            title="Explore Menu"
+          <Pressable
+            style={styles.AboutButton}
+            onPress={() => navigation.navigate("About")}
+          >
+            <Image
+              style={styles.ExploreImg}
+              source={require("../assets/about.png")}
+            />
+            <Text style={styles.ExploreText}>About</Text>
+          </Pressable>
+          <Pressable
+            style={styles.ExploreButton}
             onPress={() => navigation.navigate("Explore")}
-          ></Button>
+          >
+            <Image
+              style={styles.ExploreImg}
+              source={require("../assets/menu.png")}
+            />
+            <Text style={styles.ExploreText}>Explore Menu</Text>
+          </Pressable>
         </View>
       </ImageBackground>
     </View>
@@ -39,26 +48,56 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "flex-end",
   },
-  buttons: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginTop: 550,
-  },
   image: {
     flex: 1,
     justifyContent: "center",
     width: "100%",
     height: "100%",
   },
-  title: {
-    fontWeight: "bold",
+  ExploreButton: {
     position: "absolute",
-    top: "30%",
-    fontSize: 30,
-    color: "white",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 20,
+    top: 250,
+    left: 70,
+    width: "70%",
+    borderRadius: 20,
+    borderWidth: 1,
+    borderStyle: "solid",
+    backgroundColor: "#FFA500DD",
+    paddingVertical: 10,
+  },
+  AboutButton: {
+    position: "absolute",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 20,
+    top: 320,
+    left: 70,
+    width: "70%",
+    borderRadius: 20,
+    borderWidth: 1,
+    borderStyle: "solid",
+    backgroundColor: "#F5DEB2F0",
+    paddingVertical: 10,
+  },
+  ExploreImg: {
+    height: 30,
+    width: 30,
+  },
+  AboutImg: {
+    width: 30,
+    height: 30,
+  },
+  ExploreText: {
+    color: "black",
     textAlign: "center",
-    left: "54%",
-    transform: [{ translateX: -Dimensions.get("window").width * 0.5 }],
+    fontSize: 25,
+    fontWeight: "bold",
   },
 });

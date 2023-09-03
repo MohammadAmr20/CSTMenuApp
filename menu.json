@@ -18,6 +18,20 @@
           "price": 10.99,
           "rating": 4.0,
           "image_url": "https://s23209.pcdn.co/wp-content/uploads/2022/08/220602_DD_Spinach-Artichoke-Dip_140-1.jpg"
+        },
+        {
+          "dish_name": "Chicken Wings",
+          "description": "Crispy chicken wings tossed in your choice of sauce (BBQ, buffalo, or teriyaki). Served with ranch dressing.",
+          "price": 9.99,
+          "rating": 4.3,
+          "image_url": "https://www.kitchensanctuary.com/wp-content/uploads/2020/06/bbq-chicken-wings-square-FS-8.jpg"
+        },
+        {
+          "dish_name": "Caprese Skewers",
+          "description": "Skewers of cherry tomatoes, fresh mozzarella, and basil drizzled with balsamic glaze.",
+          "price": 7.99,
+          "rating": 4.1,
+          "image_url": "https://cloudinary-cdn.whisk.com/image/upload/g_auto,g_auto,c_fill,q_60,f_auto,h_600,w_800/v1592059187/recipe/79143bbd6f0a3f04a504421b6e050cd9.jpg"
         }
       ]
     },
@@ -45,6 +59,13 @@
           "price": 26.99,
           "rating": 4.9,
           "image_url": "https://hips.hearstapps.com/hmg-prod/images/delish-filet-mignon-horizontal-1541189043.jpeg?crop=0.8888888888888888xw:1xh;center,top&resize=1200:*"
+        },
+        {
+          "dish_name": "Chicken Parmesan",
+          "description": "Breaded chicken breast topped with marinara sauce and melted mozzarella cheese. Served with spaghetti.",
+          "price": 16.99,
+          "rating": 4.4,
+          "image_url": "https://cafedelites.com/wp-content/uploads/2014/09/Crispy-Chicken-Parmesan-IMAGE-39.jpg"
         }
       ]
     },
@@ -64,6 +85,20 @@
           "price": 6.99,
           "rating": 4.4,
           "image_url": "https://www.lifeloveandsugar.com/wp-content/uploads/2023/02/NY-Style-Cheesecake5E.jpg"
+        },
+        {
+          "dish_name": "Tiramisu",
+          "description": "Layers of coffee-soaked ladyfingers and mascarpone cream, dusted with cocoa powder.",
+          "price": 8.99,
+          "rating": 4.7,
+          "image_url": "https://i.shgcdn.com/269063bf-d72d-41dd-b848-9b30657696e6/-/format/auto/-/preview/3000x3000/-/quality/lighter/"
+        },
+        {
+          "dish_name": "Strawberry Shortcake",
+          "description": "Buttery shortcake topped with fresh strawberries and whipped cream.",
+          "price": 6.99,
+          "rating": 4.3,
+          "image_url": "https://celebratingsweets.com/wp-content/uploads/2018/06/Strawberry-Shortcake-Cake-1-1.jpg"
         }
       ]
     }

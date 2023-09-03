@@ -1,100 +1,111 @@
 import Menu from "../menu.json";
+import Section from "../Component/Section";
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import "@fortawesome/fontawesome-free-solid";
 import {
-  StyleSheet,
-  Text,
   View,
-  Image,
-  TouchableOpacity,
-  Animated,
-  Dimensions,
+  StyleSheet,
   ScrollView,
+  TextInput,
+  Keyboard,
+  Pressable,
+  TouchableOpacity,
+  Image,
+  Text,
 } from "react-native";
 
-const addSection = (Section) => {
-  const dishes = Section.dishes;
-  const [showDiv, setShowDiv] = useState(dishes.map((dish) => false));
-
-  const [divHeight, setDivHeight] = useState(
-    dishes.map((dish) => new Animated.Value(0))
-  );
-
-  useEffect(() => {
-    setShowDiv(dishes.map((dish) => false));
-    setDivHeight(dishes.map((dish) => new Animated.Value(0)));
-  }, [dishes]);
-
-  const handlePress = (index) => {
-    const newShowDiv = [...showDiv];
-    newShowDiv[index] = !newShowDiv[index];
-    setShowDiv(newShowDiv);
-    Animated.timing(divHeight[index], {
-      toValue: 100,
-      duration: 500,
-      useNativeDriver: false,
-    }).start();
-  };
-
-  return (
-    <View style={styles.section}>
-      <View style={styles.sectionTitle}>
-        <Text style={{ fontSize: 30, fontWeight: "bold" }}>
-          {Section.section_name}
-        </Text>
-      </View>
-      {dishes.map((dish, index) => {
-        return (
-          <View style={styles.dish}>
-            <Text style={styles.dishname}>{dish.dish_name}</Text>
-            <Text style={styles.price}>{dish.price}$</Text>
-            <TouchableOpacity
-              style={styles.downButtonTouch}
-              onPress={() => handlePress(index)}
-            >
-              <FontAwesomeIcon
-                icon={
-                  showDiv[index]
-                    ? "fa-solid fa-caret-up"
-                    : "fa-solid fa-caret-down"
-                }
-              />
-            </TouchableOpacity>
-            {showDiv[index] ? (
-              <>
-                <Animated.View style={[styles.div, { height: 100 }]}>
-                  <View style={styles.dishDescription}>
-                    <Image
-                      style={styles.dishImg}
-                      source={{ uri: dish.image_url }}
-                    />
-
-                    <View>
-                      <Text style={styles.dishText}>{dish.description}</Text>
-                      <Text style={styles.dishRating}>
-                        Rating: {dish.rating}
-                      </Text>
-                    </View>
-                  </View>
-                </Animated.View>
-              </>
-            ) : null}
-            <View></View>
-          </View>
-        );
-      })}
-    </View>
-  );
-};
 export default function Explore() {
   const Sections = Menu.menu_sections;
+  const [search, setSearch] = useState("");
+  const [AllVisible, setVisibility] = useState(true);
+  const [showSection, setShowSection] = useState(Sections.map(() => true));
+  useEffect(() => {
+    setShowSection(Sections.map(() => true));
+    setVisibility(true);
+  }, [Sections]);
 
+  const handleIconPress = () => {
+    Keyboard.dismiss();
+    setSearch("");
+  };
+  const handlePress = (index) => {
+    const newShowSection = [...showSection];
+    let Visible = AllVisible;
+    if (!AllVisible && newShowSection[index]) {
+      Visible = true;
+      newShowSection.fill(true);
+    } else {
+      Visible = false;
+      newShowSection.fill(false);
+      newShowSection[index] = true;
+    }
+    setShowSection(newShowSection);
+    setVisibility(Visible);
+  };
+  const filterSections = () => {
+    return Sections.filter((section, index) => showSection[index]);
+  };
+  const SectionFilter = filterSections();
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        {Sections.map((section) => {
-          return addSection(section);
+    <ScrollView style={styles.container}>
+      <View style={styles.parentSearch}>
+        <TextInput
+          style={styles.Search}
+          placeholder="Search here..."
+          value={search}
+          onChangeText={(text) => setSearch(text)}
+        />
+        <TouchableOpacity
+          style={styles.closeButtonParent}
+          onPress={handleIconPress}
+        >
+          <Image
+            style={styles.closeButton}
+            source={
+              search === ""
+                ? require("../assets/search.png")
+                : require("../assets/close.png")
+            }
+          />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.sectionButtons}>
+        {Sections.map((section, index) => {
+          return (
+            <Pressable
+              style={[
+                styles.filterButton,
+                showSection[index] && !AllVisible && styles.pressablePressed,
+              ]}
+              onPress={() => handlePress(index)}
+            >
+              <Text
+                style={[
+                  styles.filterButtonText,
+                  showSection[index] && !AllVisible && styles.pressableText,
+                ]}
+              >
+                {section.section_name}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </View>
+      <View>
+        {SectionFilter.map((section, index) => {
+          return (
+            <View>
+              <Section
+                section={section}
+                search={search}
+                key={section.section_name}
+              />
+              {index !== SectionFilter.length - 1 ? (
+                <>
+                  <View style={styles.hr}></View>
+                </>
+              ) : null}
+            </View>
+          );
         })}
       </View>
     </ScrollView>
@@ -103,68 +114,66 @@ export default function Explore() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#FFC6AC",
+    backgroundColor: "#C18F6D20",
   },
-  section: {
-    marginBottom: 50,
-    display: "flex",
-    alignItems: "center",
-  },
-  sectionTitle: {
-    marginBottom: 10,
-  },
-  downButton: {
-    width: Dimensions.get("window").width * 0.05,
-    height: Dimensions.get("window").height * 0.03,
-  },
-  dish: {
-    display: "flex",
+  parentSearch: {
+    height: 45,
+    borderColor: "gray",
+    borderWidth: 2,
+    borderRadius: 8,
+    width: "90%",
+    marginHorizontal: 20,
+    marginVertical: 15,
+    paddingHorizontal: 10,
     flexDirection: "row",
     justifyContent: "space-between",
-    padding: "3%",
-    marginBottom: 30,
-    backgroundColor: "white",
-    width: "90%",
-    flexWrap: "wrap",
-    borderRadius: 10,
-    shadowOffset: { width: -2, height: 4 },
-    shadowColor: "#000",
-    shadowOpacity: 1,
-    shadowRadius: 10,
-    elevation: 20,
   },
-  dishDescription: {
+  hr: {
+    height: 1,
+    width: "70%",
+    backgroundColor: "#635A57A0",
+    marginLeft: 65,
+    marginTop: 25,
+    marginBottom: 28,
+  },
+  sectionButtons: {
+    flex: 1,
     display: "flex",
     flexDirection: "row",
-    padding: 10,
+    justifyContent: "center",
+    width: "90%",
+    marginBottom: 30,
+    marginLeft: 12.75,
   },
-  dishImg: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
+  filterButton: {
+    paddingVertical: 5,
+    paddingHorizontal: 20,
+    borderRadius: 30,
+    borderWidth: 2,
+    alignItems: "center",
+    marginLeft: 15,
+    backgroundColor: "transparent",
   },
-  dishText: {
-    fontSize: 15,
-    width: 200,
-    paddingLeft: 10,
-    paddingTop: 10,
+  pressablePressed: {
+    backgroundColor: "#0A0201",
   },
-  dishRating: {
+  pressableText: {
     fontWeight: "bold",
-    color: "green",
-    paddingLeft: 10,
+    color: "#FEFEFE",
   },
-  price: {
-    position: "absolute",
-    left: "50%",
-    paddingTop: 10,
+  filterButtonText: {
+    fontWeight: "bold",
   },
-  div: {
-    marginBottom: 50,
+  Search: {
+    width: "90%",
   },
-  downButtonTouch: {
-    paddingTop: 10,
-    position: "absolute",
-    right: 10,
+  closeButton: {
+    height: 16,
+    width: 16,
+  },
+  closeButtonParent: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 5,
   },
 });
